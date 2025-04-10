@@ -1,33 +1,33 @@
 // enums
 enum Direction {
-    //% block="forward"
+    //% block="вперед"
     Forward,
-    //% block="back"
+    //% block="назад"
     Back,
-    //% block="left"
+    //% block="влево"
     Left,
-    //% block="right"
+    //% block="вправо"
     Right
 }
 
 enum BeamsGlass {
-    //% blockIdentity="blocks.block" enumval=262385 block="Yellow Stained Glass"
+    //% blockIdentity="blocks.block" enumval=262385 block="Желтое витражное стекло"
     //% jres alias=YELLOW_STAINED_GLASS
     YellowStainedGlass = 262385,
-    //% blockIdentity="blocks.block" enumval=327921 block="Lime Stained Glass"
+    //% blockIdentity="blocks.block" enumval=327921 block="Лаймовое витражное стекло"
     //% jres alias=LIME_STAINED_GLASS
     LimeStainedGlass = 327921,
-    //% blockIdentity="blocks.block" enumval=721137 block="Blue Stained Glass"
+    //% blockIdentity="blocks.block" enumval=721137 block="Синее витражное стекло"
     //% jres alias=BLUE_STAINED_GLASS
     BlueStainedGlass = 721137,
-    //% blockIdentity="blocks.block" enumval=917745 block="Red Stained Glass"
+    //% blockIdentity="blocks.block" enumval=917745 block="Красное витражное стекло"
     //% jres alias=RED_STAINED_GLASS
     RedStainedGlass = 917745
 }
 
 // global variables
 const stopBlock = BEDROCK
-const stopPosition = world(35,1,0)
+const stopPosition = world(35, 1, 0)
 const locatePaintingTarget = 14
 const locateGoonTarget = 113
 
@@ -49,10 +49,10 @@ namespace ww {
     /**
      * Move Wonder Woman n spaces in the d direction
      */
-    //% block="Move %d by %n"
+    //% block="Движение %d на %n"
     export function moveWW(d: Direction, n: number): void {
-        for (let i = 0; i < n; i++){
-            if(shouldStop()) return;
+        for (let i = 0; i < n; i++) {
+            if (shouldStop()) return;
 
             const direction = directions[d];
 
@@ -63,22 +63,22 @@ namespace ww {
     /**
      * Turn Wonder Woman in the t direction
      */
-    //% block="Turn %t"
+    //% block="Поворот %t"
     export function turnWW(t: TurnDirection): void {
-        if(shouldStop()) return;
+        if (shouldStop()) return;
 
         const turn = turns[t];
 
         agent.turn(turn);
-    }  
+    }
 
     /**
      * Place block in the d direction
      * @param block the block
-     */    
-    //% block="Place %block %d"
+     */
+    //% block="Установить %block %d"
     export function placeBlock(block: BeamsGlass, d: Direction): void {
-        if(shouldStop()) return;
+        if (shouldStop()) return;
 
         agent.setItem(block, 1, 1)
         agent.setSlot(1)
@@ -86,14 +86,14 @@ namespace ww {
         const direction = directions[d];
 
         agent.place(direction);
-    }  
+    }
 
     /**
      * Inspect in the d direction for the painting
      */
-    //% block="painting inside crate %d"
+    //% block="Картина в ящике %d"
     export function locatePainting(d: Direction): boolean {
-        if(shouldStop()) return false;
+        if (shouldStop()) return false;
 
         const direction = directions[d];
 
@@ -105,21 +105,21 @@ namespace ww {
     /**
      * Break the block in the d direction
      */
-    //% block="Break crate %d"
+    //% block="Разрушить ящик %d"
     export function retrievePainting(d: Direction): void {
-        if(shouldStop()) return;
+        if (shouldStop()) return;
 
         const direction = directions[d];
 
         agent.destroy(direction);
-    }    
+    }
 
     /**
      * Inspect in the d direction for Goon
      */
-    //% block="attendee is the thief %d"
+    //% block="Посетитель - вор %d"
     export function locateGoon(d: Direction): boolean {
-        if(shouldStop()) return false;
+        if (shouldStop()) return false;
 
         const direction = directions[d];
 
@@ -131,9 +131,9 @@ namespace ww {
     /**
      * Inspect in the d direction for GOLD_BLOCK
      */
-    //% block="Lasso thief %d"
+    //% block="Лассо для вора %d"
     export function apprehendGoon(d: Direction): void {
-        if(shouldStop()) return;
+        if (shouldStop()) return;
 
         const direction = directions[d];
 
@@ -143,14 +143,14 @@ namespace ww {
     /**
      * Inspect in the d direction for GOLD_BLOCK
      */
-    //% block="Takedown criminal %d"
+    //% block="Нейтрализация преступника %d"
     export function takedownGoon(d: Direction): void {
-        if(shouldStop()) return;
+        if (shouldStop()) return;
 
         const direction = directions[d];
 
         agent.destroy(direction);
-    }    
+    }
 
     // helper functions
     function shouldStop(): boolean {

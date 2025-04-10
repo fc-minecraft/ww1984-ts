@@ -8,8 +8,11 @@
     "files": [
         "README.md",
         "ww1984.ts"
-
     ],
+    "targetVersions": {
+        "target": "2.0.30",
+        "targetId": "minecraft"
+    },
     "supportedTargets": [
         "minecraft"
     ],
